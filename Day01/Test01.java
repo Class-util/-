@@ -14,14 +14,18 @@ public class Test01 {
         int[] arr = {1,2,3,4,5};
         int i = maxNum(arr);
         System.out.println(i);
+
         double fun = fun(arr);
         System.out.println(fun);
-        fun1(arr);
-        System.out.println(Arrays.toString(arr));
+
         boolean b1 = searchNum(arr, 3);
         System.out.println(b1);
+
         boolean b = searchNum1(arr, 2);
         System.out.println(b);
+
+        fun1(arr);
+        System.out.println(Arrays.toString(arr));
     }
     //寻找数组最大值
     public static int maxNum(int[] nums){
