@@ -14,7 +14,7 @@ public class MyArrayList {
     private int usedSize;
 
     public MyArrayList(){
-        this.elem = new int[10];
+        this.elem = new int[5];
     }
     public  MyArrayList(int n){
         this.elem = new int[n];
@@ -22,11 +22,14 @@ public class MyArrayList {
 
     //打印顺序表
     public void display(){
-        System.out.println(Arrays.toString(elem));
+        for (int i = 0; i < this.usedSize; i++) {
+            System.out.print(this.elem[i] + " ");
+        }
+        System.out.println("\n");
     }
     //判断是否满
     public boolean isFull(){
-        System.out.println("顺序表以满");
+        //System.out.println("顺序表以满");
         return this.usedSize == this.elem.length;
     }
     //扩容
@@ -36,6 +39,7 @@ public class MyArrayList {
     //在post位置新增元素
     public void add(int pos,int data){
         if (isFull()){
+            System.out.println("顺序表以满");
             resize();
             return;
         }
@@ -50,11 +54,13 @@ public class MyArrayList {
         this.usedSize++;
     }
     //默认插入最后一个位置
-    public void add2(int data){
+    public void add(int data){
         if (isFull()) {
+            System.out.println("顺序表以满");
             resize();
         }
-        this.elem[usedSize] = data;
+        this.usedSize++;
+        this.elem[usedSize-1] = data;
     }
     //判定是否包含某个元素
     public boolean contains(int toFind){
