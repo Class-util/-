@@ -10,17 +10,12 @@ package Day04;
 public class TestDemo {
     public static void main(String[] args) {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
-        singleLinkedList.createLinkedList();
-        singleLinkedList.display();
-        int size = singleLinkedList.size();
-        System.out.println("单链表长度为：" + size);
-        singleLinkedList.addFirst(56);
-        singleLinkedList.display();
-        singleLinkedList.addLast(77);
-        singleLinkedList.display();
-        singleLinkedList.remove(56);
-        singleLinkedList.display();
-        System.out.println(singleLinkedList.findN(5).val);
-        System.out.println(size = singleLinkedList.size());
+        singleLinkedList.addLast(1);
+        singleLinkedList.addLast(2);
+        singleLinkedList.addLast(3);
+//        singleLinkedList.remove1(1);
+//        singleLinkedList.display();
+        Node node = singleLinkedList.middleNode();
+        System.out.println(node.val);
     }
 }

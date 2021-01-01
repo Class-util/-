@@ -28,13 +28,13 @@ public class SingleLinkedList {
     //创建单链表,并返回单链表第一个结点
     public void createLinkedList(){
         Node node1 = new Node(1);
-        Node node2 = new Node(2);
-        Node node3 = new Node(3);
-        Node node4 = new Node(4);
+//        Node node2 = new Node(2);
+//        Node node3 = new Node(3);
+//        Node node4 = new Node(4);
         //连接链表操作
-        node1.next = node2;
-        node2.next = node3;
-        node3.next = node4;
+//        node1.next = node2;
+//        node2.next = node3;
+//        node3.next = node4;
         head = node1;
     }
     //打印单链表
@@ -156,12 +156,14 @@ public class SingleLinkedList {
     }
     //删除第一次出现关键字为key的节点
     public void remove(int key){
-        Node cur = head;
+        if(this.head == null)
+            return ;
+        Node cur = this.head;
         //如果第一个结点为key
         if(cur.val == key){
             head = cur.next;
         }else {
-            while (true){
+            while (cur.next != null){
                 if(cur.next.val == key){
                     cur.next = cur.next.next;
                     return ;
@@ -172,17 +174,24 @@ public class SingleLinkedList {
     }
     //删除所有值为key的节点
     public void removeAllKey(int key){
-        Node cur = head;
-        //如果第一个结点为key
-        if(cur.val == key){
-            head = cur.next;
-        }else {
-            while (cur != null){
-                if(cur.next.val == key){
-                    cur.next = cur.next.next;
-                }
+        if(head == null){
+            return ;
+        }
+        Node cur = head.next;
+        Node pre = head;
+
+
+        while (cur != null){
+            if(cur.val == key){
+                pre.next = cur.next;
+                cur = cur.next;
+            }else {
+                pre = cur;
                 cur = cur.next;
             }
+        }
+        if(head.val == key){
+            this.head = head.next;
         }
     }
     public void clear(){
@@ -208,5 +217,92 @@ public class SingleLinkedList {
             cur = cur.next;
         }
         return cur;
+    }
+    //删除第一次出现关键字为key的节点
+    public void remove1(int key){
+        if(head == null){
+            System.out.println("链表为空，删除失败");
+            return ;
+        }
+        if(this.head.val == key){
+            this.head = this.head.next;
+            return ;
+        }
+        //找到要删除结点的直接前驱
+        Node pre = searchKey(key);
+        if(pre == null){
+            System.out.println("找不到key，删除失败");
+        }else {
+            //key结点
+            Node del = pre.next;
+            pre.next = del.next;
+        }
+    }
+    //寻找key结点的前驱
+    public Node searchKey(int key){
+        Node cur = head;
+        while (cur.next != null){
+            if(cur.next.val == key)
+                return cur;
+            cur = cur.next;
+        }
+        return null;
+    }
+    //删除所有值为key的节点
+    public void removeAllKey1(int key){
+        Node prev = this.head;
+        Node cur = prev.next;
+
+        while (cur != null){
+            if(cur.val == key){
+                prev.next = cur.next;
+                cur = cur.next;
+            }else {
+                prev = cur;
+                cur = cur.next;
+            }
+        }
+        if(this.head.val == key){
+            this.head = this.head.next;
+        }
+    }
+    //反转链表
+    public Node reverseList(){
+        Node cur = this.head;
+        Node prev = null;
+        Node newHead = null;
+
+        while (cur != null){
+            Node curNext = cur.next;
+            if(curNext == null){
+                newHead = cur;
+            }
+            cur.next = prev;
+            prev = cur;
+            cur = curNext;
+        }
+        return newHead;
+    }
+    //找到中间结点的两种方法
+    //1.用长度来计算
+    public Node middleNode1() {
+        int len = size()/2;
+        Node cur = this.head;
+        int count = 0;
+        while (count != len){
+            cur = cur.next;
+            count++;
+        }
+        return cur;
+    }
+    //定义快慢指针
+    public Node middleNode(){
+        Node low = this.head;
+        Node fast = this.head;
+        while (fast != null && fast.next != null){
+            fast = fast.next.next;
+            low = low.next;
+        }
+        return low;
     }
 }
