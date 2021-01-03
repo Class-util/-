@@ -15,7 +15,12 @@ public class TestDemo {
         singleLinkedList.addLast(3);
 //        singleLinkedList.remove1(1);
 //        singleLinkedList.display();
-        Node node = singleLinkedList.middleNode();
-        System.out.println(node.val);
+//        Node node = singleLinkedList.middleNode();
+//        System.out.println(node.val);
+        Node node = singleLinkedList.reverseList1();
+        while (node != null){
+            System.out.println(node.val);
+            node = node.next;
+        }
     }
 }

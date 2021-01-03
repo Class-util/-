@@ -283,6 +283,23 @@ public class SingleLinkedList {
         }
         return newHead;
     }
+    //反转链表 ，头插法实现
+    public Node reverseList1(){
+        Node cur = this.head;
+
+        Node pre = new Node();
+        Node curNext = null;
+
+        while (cur != null){
+            //记录要插入的结点
+            curNext = cur.next;
+            cur.next = pre.next;
+
+            pre.next = cur;
+            cur = curNext;
+        }
+        return pre.next;
+    }
     //找到中间结点的两种方法
     //1.用长度来计算
     public Node middleNode1() {
