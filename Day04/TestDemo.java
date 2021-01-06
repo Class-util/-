@@ -12,15 +12,12 @@ public class TestDemo {
         SingleLinkedList singleLinkedList = new SingleLinkedList();
         singleLinkedList.addLast(1);
         singleLinkedList.addLast(2);
-        singleLinkedList.addLast(3);
+        singleLinkedList.addLast(2);
 //        singleLinkedList.remove1(1);
 //        singleLinkedList.display();
 //        Node node = singleLinkedList.middleNode();
 //        System.out.println(node.val);
-        Node node = singleLinkedList.reverseList1();
-        while (node != null){
-            System.out.println(node.val);
-            node = node.next;
-        }
+        Boolean b = singleLinkedList.chkPalindrome(singleLinkedList.head);
+        System.out.println(b);
     }
 }
