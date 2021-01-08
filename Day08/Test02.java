@@ -213,8 +213,10 @@ public class Test02 {
             if(cur.val == key) {
                 if(cur == this.head) {
                     //头结点
+                    if(head.getNext() != null){
+                        this.head.prev = null;
+                    }
                     this.head = this.head.next;
-                    this.head.prev = null;
                 }else {
                     cur.prev.next = cur.next;
                     if(cur.next != null) {
