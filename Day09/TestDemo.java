@@ -1,5 +1,9 @@
 package Day09;
 
+import org.w3c.dom.Node;
+
+import javax.swing.tree.TreeNode;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -11,13 +15,47 @@ public class TestDemo {
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
         BTNode tree1 = tree.createTree();
-        tree.getSize1(tree1);
-        System.out.println(BinaryTree.size);
-        System.out.println(tree.getSize2(tree1));
-        tree.getLeafSize1(tree1);
-        System.out.println(BinaryTree.leafSize);
-        System.out.println(tree.getLeafSize2(tree1));
-        System.out.println(tree.getKLevelSize(tree1, 4));
-        System.out.println(tree.getHeight(tree1));
+//        tree.getSize1(tree1);
+//        System.out.println(BinaryTree.size);
+//        System.out.println(tree.getSize2(tree1));
+//        tree.getLeafSize1(tree1);
+//        System.out.println(BinaryTree.leafSize);
+//        System.out.println(tree.getLeafSize2(tree1));
+//        System.out.println(tree.getKLevelSize(tree1, 4));
+//        System.out.println(tree.getHeight(tree1));
+//        tree.levelOrderTraversal(tree1);
+        int i = tree.widthOfBinaryTree(tree1);
+        System.out.println(i);
+    }
+
+    public boolean isSubtree(BTNode s, BTNode t) {
+        if(s == null || t == null){
+            return false;
+        }
+        if(isSameTree(s,t))
+            return true;
+        if(isSubtree(s.left,t))
+            return true;
+        if(isSubtree(s.right,t))
+            return true;
+        return false;
+    }
+
+
+    public static boolean isSameTree(BTNode p, BTNode q) {
+        //两个有一个为空，返回false
+        if(p != null && q == null || p== null && q != null){
+            return false;
+        }
+        //两个都为空
+        if(p == null && q == null){
+            return true;
+        }
+        //两个都不为空l
+        if(p.val != q.val){
+            return false;
+        }
+        //返回值要判断，左子树和右子树是否都相同
+        return isSameTree(p.left,q.left) && isSameTree(p.right,q.right);
     }
 }

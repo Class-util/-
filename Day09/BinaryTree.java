@@ -3,6 +3,11 @@ package Day09;
 
 import org.w3c.dom.Node;
 
+import javax.swing.tree.TreeNode;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 /**
  * Created with IntelliJ IDEA.
  * Description:
@@ -125,8 +130,68 @@ public class BinaryTree {
     // 查找 val 所在结点，没有找到返回 null
 // 按照 根 -> 左子树 -> 右子树的顺序进行查找
 // 一旦找到，立即返回，不需要继续在其他位置查找
-    Node find(BTNode root, int val){
-
+    BTNode find(BTNode root, char val){
+        if(root == null){
+            return null;
+        }
+        //判断根节点
+        if(root.val == val){
+            return root;
+        }
+        //判断左节点
+        BTNode ret = find(root.left, val);
+        if(ret != null){
+            return ret;
+        }
+        //判断右节点
+        ret = find(root.right, val);
+        if(ret != null){
+            return ret;
+        }
+        //都判断完了，没有返回null
         return null;
+    }
+    //层序遍历
+    void levelOrderTraversal(BTNode root){
+        Queue<BTNode> queue = new LinkedList<>();
+        if(root == null){
+            return ;
+        }
+        BTNode cur = null;
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            cur = queue.poll();
+            System.out.print(cur.val);
+            if(cur.left != null){
+                queue.offer(cur.left);
+            }
+            if(cur.right != null){
+                queue.offer(cur.right);
+            }
+        }
+    }
+    public int widthOfBinaryTree(BTNode root) {
+        Queue<BTNode> queue = new LinkedList<>();
+        if(root == null){
+            return 0;
+        }
+        queue.offer(root);
+        BTNode cur = null;
+        int max = 0;
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            max = Math.max(max,size);
+            while(size > 0){
+                cur = queue.poll();
+                if(cur.left != null){
+                    queue.offer(cur.left);
+                }
+                if(cur.right != null){
+                    queue.offer(cur.right);
+                }
+                size--;
+            }
+        }
+        return max ;
     }
 }
