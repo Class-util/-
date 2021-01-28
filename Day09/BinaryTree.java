@@ -1,12 +1,8 @@
 package Day09;
 
-
-import org.w3c.dom.Node;
-
-import javax.swing.tree.TreeNode;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,13 +21,6 @@ class BTNode {
     }
 }
 public class BinaryTree {
-    /**
-     * 我们要首先创建二叉树，但是为了好理解，我们先以穷举的方式
-     * 创建二叉树
-     * 后期我们会以遍历的方式 创建二叉树
-     * 当前只是权宜之计
-     * @return
-     */
     public BTNode createTree() {
         BTNode A = new BTNode('A');
         BTNode B = new BTNode('B');
@@ -75,7 +64,7 @@ public class BinaryTree {
         if(root == null) return;
         postOrderTraversal(root.left);
         postOrderTraversal(root.right);
-        System.out.println(root.val);
+        System.out.print(root.val);
     }
 
     // 遍历思路-求结点个数
@@ -193,5 +182,87 @@ public class BinaryTree {
             }
         }
         return max ;
+    }
+    // 判断一棵树是不是完全二叉树
+    boolean isCompleteTree(BTNode root) {
+        if(root == null)
+            return true;
+        Queue<BTNode> queue = new LinkedList<>();
+        BTNode cur = null;
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            cur = queue.poll();
+            if(cur != null){
+                queue.offer(cur.left);
+                queue.offer(cur.right);
+            }else {
+                break;
+            }
+        }
+        while (!queue.isEmpty()){
+            cur = queue.peek();
+            if(cur != null){
+                return false;
+            }else {
+                queue.poll();
+            }
+        }
+        return true;
+    }
+    // 前序遍历
+    void preOrderTraversal1(BTNode root){
+        if(root == null)
+            return ;
+        Stack<BTNode> stack = new Stack<>();
+        BTNode cur = root;
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null){
+                stack.push(cur);
+                System.out.print(cur.val);
+                cur = cur.left;
+            }
+            BTNode top = stack.pop();
+            cur = top.right;
+        }
+    }
+    // 中序遍历
+    void inOrderTraversal1(BTNode root){
+        if(root == null)
+            return ;
+        Stack<BTNode> stack = new Stack<>();
+        BTNode cur = root;
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null){
+                stack.push(cur);
+                //System.out.print(cur.val);
+                cur = cur.left;
+            }
+            BTNode top = stack.pop();
+            System.out.print(top.val);
+            cur = top.right;
+        }
+    }
+    // 后序遍历
+    void postOrderTraversal1(BTNode root){
+        if(root == null)
+            return ;
+        Stack<BTNode> stack = new Stack<>();
+        BTNode cur = root;
+        BTNode prev = null;
+        while (cur != null || !stack.isEmpty()){
+            while (cur != null){
+                stack.push(cur);
+                //System.out.print(cur.val);
+                cur = cur.left;
+            }
+            BTNode top = stack.peek();
+            if(top.right == null || top.right == prev){
+                stack.pop();
+                System.out.print(top.val);
+                prev = top;
+            }else {
+                cur = top.right;
+            }
+        }
     }
 }

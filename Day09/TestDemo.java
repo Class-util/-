@@ -24,8 +24,17 @@ public class TestDemo {
 //        System.out.println(tree.getKLevelSize(tree1, 4));
 //        System.out.println(tree.getHeight(tree1));
 //        tree.levelOrderTraversal(tree1);
-        int i = tree.widthOfBinaryTree(tree1);
-        System.out.println(i);
+//        int i = tree.widthOfBinaryTree(tree1);
+//        System.out.println(i);
+        tree.preOrderTraversal1(tree1);
+        System.out.println("");
+        tree.inOrderTraversal1(tree1);
+        System.out.println("");
+        tree.inOrderTraversal(tree1);
+        System.out.println("");
+        tree.postOrderTraversal1(tree1);
+        System.out.println("");
+        tree.postOrderTraversal(tree1);
     }
 
     public boolean isSubtree(BTNode s, BTNode t) {
