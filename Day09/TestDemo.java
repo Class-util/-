@@ -3,6 +3,7 @@ package Day09;
 import org.w3c.dom.Node;
 
 import javax.swing.tree.TreeNode;
+import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.
@@ -12,7 +13,22 @@ import javax.swing.tree.TreeNode;
  * Time:11:13
  */
 public class TestDemo {
+
     public static void main(String[] args) {
+        HeapDemo heapDemo = new HeapDemo();
+        int[] arr = {27,15,19,18,28,34,65,49,25,37};
+        System.out.println(Arrays.toString(arr));
+        heapDemo.creatBigHeap(arr);
+        heapDemo.show();
+        heapDemo.push(100);
+        System.out.println("");
+        heapDemo.show();
+        System.out.println("");
+        System.out.println(heapDemo.poll());
+        heapDemo.show();
+    }
+
+    public static void main1(String[] args) {
         BinaryTree tree = new BinaryTree();
         BTNode tree1 = tree.createTree();
 //        tree.getSize1(tree1);
