@@ -1,9 +1,8 @@
-package Day10;
+package Day10.udp;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.util.Arrays;
 
 /**
  * Created with IntelliJ IDEA.

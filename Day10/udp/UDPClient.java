@@ -1,4 +1,4 @@
-package Day10;
+package Day10.udp;
 
 import java.io.IOException;
 import java.net.*;
